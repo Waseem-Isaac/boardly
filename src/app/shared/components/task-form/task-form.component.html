@@ -1,0 +1,126 @@
+<div class="task-form-container">
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="task-form">
+    <!-- Title -->
+    <div class="form-group">
+      <label for="title">Title <span class="required">*</span></label>
+      <input
+        type="text"
+        id="title"
+        formControlName="title"
+        class="form-control"
+        [class.invalid]="isFieldInvalid('title')"
+        placeholder="Enter task title"
+      />
+      @if (isFieldInvalid('title')) {
+        <span class="error-message">{{ getFieldError('title') }}</span>
+      }
+    </div>
+
+    <!-- Description -->
+    <div class="form-group">
+      <label for="description">Description <span class="required">*</span></label>
+      <textarea
+        id="description"
+        formControlName="description"
+        class="form-control"
+        [class.invalid]="isFieldInvalid('description')"
+        placeholder="Enter task description"
+        rows="4"
+      ></textarea>
+      @if (isFieldInvalid('description')) {
+        <span class="error-message">{{ getFieldError('description') }}</span>
+      }
+    </div>
+
+    <!-- Status and Priority Row -->
+    <div class="form-row">
+      <div class="form-group">
+        <label for="status">Status <span class="required">*</span></label>
+        <select
+          id="status"
+          formControlName="status"
+          class="form-control"
+          [class.invalid]="isFieldInvalid('status')"
+        >
+          @for (option of statusOptions; track option.value) {
+            <option [value]="option.value">{{ option.label }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="priority">Priority <span class="required">*</span></label>
+        <select
+          id="priority"
+          formControlName="priority"
+          class="form-control"
+          [class.invalid]="isFieldInvalid('priority')"
+        >
+          @for (option of priorityOptions; track option.value) {
+            <option [value]="option.value">{{ option.label }}</option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <!-- Due Date -->
+    <div class="form-group">
+      <label for="dueDate">Due Date <span class="required">*</span></label>
+      <input
+        type="date"
+        id="dueDate"
+        formControlName="dueDate"
+        class="form-control"
+        [class.invalid]="isFieldInvalid('dueDate')"
+      />
+      @if (isFieldInvalid('dueDate')) {
+        <span class="error-message">{{ getFieldError('dueDate') }}</span>
+      }
+    </div>
+
+    <!-- Assignee -->
+    <div formGroupName="assignee" class="assignee-group">
+      <h3>Assignee Information</h3>
+      
+      <div class="form-group">
+        <label for="assigneeName">Name <span class="required">*</span></label>
+        <input
+          type="text"
+          id="assigneeName"
+          formControlName="name"
+          class="form-control"
+          [class.invalid]="isFieldInvalid('assignee.name')"
+          placeholder="Enter assignee name"
+        />
+        @if (isFieldInvalid('assignee.name')) {
+          <span class="error-message">{{ getFieldError('assignee.name') }}</span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="assigneeEmail">Email <span class="required">*</span></label>
+        <input
+          type="email"
+          id="assigneeEmail"
+          formControlName="email"
+          class="form-control"
+          [class.invalid]="isFieldInvalid('assignee.email')"
+          placeholder="Enter assignee email"
+        />
+        @if (isFieldInvalid('assignee.email')) {
+          <span class="error-message">{{ getFieldError('assignee.email') }}</span>
+        }
+      </div>
+    </div>
+
+    <!-- Form Actions -->
+    <div class="form-actions">
+      <button type="button" class="btn btn-secondary" (click)="onCancel()">
+        Cancel
+      </button>
+      <button type="submit" class="btn btn-primary" [disabled]="taskForm.invalid">
+        {{ submitButtonText }}
+      </button>
+    </div>
+  </form>
+</div>
