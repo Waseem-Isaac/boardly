@@ -1,9 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { TaskFormComponent } from '../../../shared/components/task-form/task-form.component';
+import { TaskFormComponent } from '../components/task-form/task-form.component';
 import { TaskService } from '../task.service';
-import { Task, TaskFormData } from '../../../core/models';
+import { Task, TaskFormData } from '../models';
 
 @Component({
   selector: 'app-task-edit',

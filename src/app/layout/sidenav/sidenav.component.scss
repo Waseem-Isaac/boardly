@@ -1,0 +1,16 @@
+:host {
+  .nav-item {
+    margin-bottom: 1rem;  
+    display: flex;
+    align-items: center;
+    &.active-nav-item, &.action-button {
+      background: var(--mat-sys-primary-container) !important;
+      color: var(--mat-sys-on-primary-container) !important;
+    }
+
+    mat-icon {
+      font-size: 1.1rem;
+    }
+  }
+}
+

@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { TaskFormComponent } from '../../../shared/components/task-form/task-form.component';
+import { TaskFormComponent } from '../components/task-form/task-form.component';
 import { TaskService } from '../task.service';
-import { TaskFormData } from '../../../core/models';
+import { TaskFormData } from '../models';
 
 @Component({
   selector: 'app-task-add',

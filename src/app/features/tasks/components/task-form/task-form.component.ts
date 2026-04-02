@@ -1,12 +1,21 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { Task, TaskFormData } from '../../../core/models';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { Task, TaskFormData } from '../../models';
 
 @Component({
   selector: 'app-task-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
+  ],
   templateUrl: './task-form.component.html',
   styleUrls: ['./task-form.component.scss'],
 })
@@ -17,7 +26,7 @@ export class TaskFormComponent implements OnInit {
   @Output() formCancel = new EventEmitter<void>();
 
   taskForm!: FormGroup;
-  
+
   statusOptions = [
     { value: 'todo', label: 'To Do' },
     { value: 'in-progress', label: 'In Progress' },
@@ -63,11 +72,6 @@ export class TaskFormComponent implements OnInit {
 
   onCancel(): void {
     this.formCancel.emit();
-  }
-
-  isFieldInvalid(fieldName: string): boolean {
-    const field = this.taskForm.get(fieldName);
-    return !!(field && field.invalid && (field.dirty || field.touched));
   }
 
   getFieldError(fieldName: string): string {

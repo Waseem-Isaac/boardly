@@ -1,3 +1,13 @@
-<!-- app.html -->
-<h2>{{ title() }}</h2>
-<router-outlet />
+<app-header />
+
+<mat-sidenav-container class="app-container">
+  <mat-sidenav mode="side" opened class="app-sidenav">
+    <app-sidenav />
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <main class="main-content">
+      <router-outlet />
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

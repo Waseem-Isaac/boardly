@@ -1,1 +1,38 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@use './variables';
+
+html {
+  height: 100%;
+  @include mat.theme((
+    typography: Inter,
+  ));
+
+  --mat-sys-primary-container: var(--primary-color);
+  --mat-sys-on-primary-container: var(--primary-contrast);
+  --mat-toolbar-container-background-color: var(--primary-contrast);
+  --mat-sidenav-container-background-color: var(--primary-contrast);
+  --mat-sidenav-content-background-color: var(--body-bg-color);
+  --mat-sys-corner-full: .25rem;
+}
+
+body {
+  color-scheme: light;
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+  margin: 0;
+  height: 100%;
+}
+
+// utils
+.d-flex {
+  display: flex !important;
+}
+
+.align-items-center {
+  align-items: center !important;
+}
+
+.justify-content-center {
+  justify-content: center !important;
+}
