@@ -1,0 +1,5 @@
+<div class="statistics-grid">
+  @for (stat of statistics(); track stat.id) {
+    <app-statistic-card [statistic]="stat" />
+  }
+</div>

@@ -1,0 +1,33 @@
+<div class="task-card" [ngClass]="{ 'overdue': isOverdue(task()) }">
+
+  <!-- 1. Priority badge + 4. Due date -->
+  <div class="card-header d-flex align-items-center justify-content-between mb-2" >
+    <span class="priority-badge priority-{{ task().priority }}">{{ task().priority }}</span>
+  </div>
+
+  <!-- 2. Title -->
+  <h5 class="card-title">{{ task().title }}</h5>
+
+  <!-- 3. Description -->
+  <p class="card-description">{{ task().description }}</p>
+
+  <!-- 4. Due date -->
+  <span class="due-date-badge">{{ task().dueDate | dueDate }}</span>
+
+  <!-- 5. Tags -->
+  <div class="tags d-flex flex-wrap gap-1 mt-1">
+    @for (tag of task().tags; track tag) {
+      <span class="tag">{{ tag }}</span>
+    }
+  </div>
+
+  <!-- 6. Horizontal line -->
+  <hr class="card-divider" />
+
+  <!-- 7. Assignee avatar + name -->
+  <div class="assignee d-flex align-items-center gap-2">
+    <div class="avatar">{{ getInitials(task().assignee.name) }}</div>
+    <span class="assignee-name">{{ task().assignee.name }}</span>
+  </div>
+
+</div>

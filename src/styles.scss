@@ -1,18 +1,44 @@
 @use '@angular/material' as mat;
 @use './variables';
+@use './utils';
 
 html {
   height: 100%;
   @include mat.theme((
-    typography: Inter,
+    typography: Inter
   ));
 
-  --mat-sys-primary-container: var(--primary-color);
-  --mat-sys-on-primary-container: var(--primary-contrast);
-  --mat-toolbar-container-background-color: var(--primary-contrast);
-  --mat-sidenav-container-background-color: var(--primary-contrast);
-  --mat-sidenav-content-background-color: var(--body-bg-color);
-  --mat-sys-corner-full: .25rem;
+  --mat-sys-primary-container: var(--color-primary);
+  --mat-sys-on-primary-container: var(--color-primary-contrast);
+  --mat-toolbar-container-background-color: var(--color-primary-contrast);
+  --mat-sidenav-container-background-color: var(--color-primary-contrast);
+  --mat-sidenav-content-background-color: var(--color-body-bg);
+  --mat-sys-corner-full: var(--radius-md);
+
+  // Ensure Material surface tokens resolve to solid colours
+  --mat-sys-surface: #ffffff;
+  --mat-sys-surface-container: #ffffff;
+  --mat-sys-surface-container-low: #f5f7fa;
+  --mat-sys-surface-container-high: #ffffff;
+
+  // Map M3 error system token → project danger colour
+  // This propagates to mat-error text, error outline, error label and datepicker errors
+  --mat-sys-error: var(--color-danger);
+  --mat-sys-on-error: #ffffff;
+
+ 
+
+    /** Form fields overrides */
+   @include mat.form-field-overrides((
+    
+  ));
+  --mat-form-field-outlined-error-outline-color: var(--color-danger);
+  --mat-form-field-outlined-error-focus-outline-color: var(--color-danger);
+  --mat-form-field-outlined-error-hover-outline-color: var(--color-danger);
+
+  --mat-form-field-outlined-outline-color: var(--color-light-grey);
+  --mat-form-field-outlined-hover-outline-color: var(--color-light-grey);
+  --mat-form-field-outlined-focus-outline-color: var(--color-primary);
 }
 
 body {
@@ -24,15 +50,29 @@ body {
   height: 100%;
 }
 
-// utils
-.d-flex {
-  display: flex !important;
+.btn-primary {
+  background: var(--mat-sys-primary-container) !important;
+  color: var(--mat-sys-on-primary-container) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  padding: 0.5rem 1.5rem;
+  font-size: 0.806rem;
+  border-radius: 4px;
+
+  &:disabled {
+    opacity: 0.6;
+  }
 }
 
-.align-items-center {
-  align-items: center !important;
+// Native form controls (non-Material)
+input:not([type='checkbox']):not([type='radio']):not([type='range']),
+select,
+textarea {
+  border-color: var(--color-light-grey) !important;
 }
 
-.justify-content-center {
-  justify-content: center !important;
+::placeholder, select::placeholder, label {
+  color: var(--color-neutral) !important;
 }

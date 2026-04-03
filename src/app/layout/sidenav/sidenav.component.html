@@ -5,6 +5,7 @@
       mat-list-item
       [routerLink]="item.route"
       routerLinkActive="active-nav-item"
+      [routerLinkActiveOptions]="{ exact: true }"
     >
       {{item.icon}}
       {{ item.label }}
@@ -12,7 +13,7 @@
   }
 
 
-  <a [routerLink]="'/tasks/add'" class="m-4 nav-item action-button" mat-list-item mat-button> 
+  <a [routerLink]="'/dashboard/tasks/add'" class="m-4 nav-item btn-primary" mat-list-item mat-button> 
     <span class="d-flex align-items-center justify-content-center">
       <mat-icon class="d-flex align-items-center justify-content-center">add</mat-icon> 
        New Task

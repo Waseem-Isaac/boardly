@@ -3,7 +3,7 @@
     margin-bottom: 1rem;  
     display: flex;
     align-items: center;
-    &.active-nav-item, &.action-button {
+    &.active-nav-item {
       background: var(--mat-sys-primary-container) !important;
       color: var(--mat-sys-on-primary-container) !important;
     }

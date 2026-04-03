@@ -1,0 +1,111 @@
+:host {
+  .tasks-list-container {
+    display: flex;
+    flex-direction: column;
+
+    .task-list-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      border-radius: var(--radius-lg);
+      background-color: var(--color-primary-contrast);
+      padding: 1rem;
+      box-shadow: 0px 2px 4px 0px #00000014;
+      
+      .filter-group {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .filter-select {
+        width: 140px;
+
+        // Match the height/padding of the adjacent btn-primary
+        ::ng-deep {
+          .mat-mdc-text-field-wrapper {
+            padding: 0 8px;
+          }
+          .mat-mdc-form-field-infix {
+            padding-top: 7px;
+            padding-bottom: 7px;
+            min-height: unset;
+          }
+          .mdc-text-field--outlined .mdc-notched-outline__leading,
+          .mdc-text-field--outlined .mdc-notched-outline__trailing,
+          .mdc-text-field--outlined .mdc-notched-outline__notch {
+            border-color: var(--color-light-grey);
+          }
+          .mat-mdc-select-placeholder,
+          .mat-mdc-select-value-text {
+            font-size: 0.875rem;
+          }
+        }
+      }
+
+      button {
+        padding: 8px 16px;
+        font-size: 1rem;
+        // background-color: var(--color-primary);
+        background-color: var(--color-primary-contrast);
+        color: #000;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.83125rem;
+
+        &.active {
+          background-color: var(--color-primary);
+          color: var(--color-primary-contrast);
+        }
+      }
+    }
+
+    
+      .tasks-columns {
+        display: flex;
+        gap: 16px;
+
+        .column {
+          flex: 1;
+          background-color: var(--color-primary-contrast);
+          border-radius: var(--radius-lg);
+          padding: 1rem;
+          box-shadow: 0px 2px 4px 0px #00000014;
+          min-height: 60vh;
+          .column-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--color-light-grey);
+            margin-bottom: 1rem;
+            .column-title, .task-count {
+              font-size: 0.875rem;
+              font-weight: bold;
+            }
+            .task-count.badge {
+              background-color: var(--color-light-grey);
+              padding: 0.3rem;
+              font-size: 0.64375rem;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 1rem;
+              height: 1rem;
+            }
+          }
+        
+          &.non-active-status-column {
+            background-color: var(--color-inactive);
+            opacity: 0.6;
+          }
+        }
+
+        @media screen and (max-width: 992px) {
+          flex-direction: column;
+        }
+      }
+    }
+}
