@@ -1,0 +1,31 @@
+<div class="users-page">
+  <h2 class="page-title">Team Members</h2>
+
+  @if (taskService.isLoading()) {
+    <div class="users-grid">
+      @for (n of [1, 2, 3, 4, 5, 6]; track n) {
+        <div class="user-card skeleton-card">
+          <div class="skeleton skeleton-avatar"></div>
+          <div class="skeleton skeleton-name"></div>
+          <div class="skeleton skeleton-email"></div>
+        </div>
+      }
+    </div>
+  } @else {
+    <div class="users-grid">
+      @for (user of taskService.users(); track user.id) {
+        <div class="user-card">
+          @if (user.avatar) {
+            <img class="user-avatar" [src]="user.avatar" [alt]="user.name" />
+          } @else {
+            <div class="user-avatar user-avatar--initials">{{ getInitials(user.name) }}</div>
+          }
+          <div class="user-info">
+            <span class="user-name">{{ user.name }}</span>
+            <span class="user-email">{{ user.email }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

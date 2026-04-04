@@ -16,10 +16,8 @@ export class SidenavComponent {
 
   navItems = [
     { label: 'Dashboard', route: '/dashboard', icon: '📊' },
-    { label: 'Tasks', route: '/tasks', icon: '✅' },
-    { label: 'Team (Users)', route: '/team', icon: '👥' },
-    { label: 'Calendar', route: '/calendar', icon: '📅' },
-    { label: 'Analytics', route: '/analytics', icon: '📈' },
-    { label: 'Settings', route: '/settings', icon: '⚙️' },
+    { label: 'Tasks', route: '/dashboard/tasks', icon: '✅' },
+    { label: 'Analytics', route: '/dashboard/analytics', icon: '📈' },
+    { label: 'Team (Users)', route: '/dashboard/users', icon: '👥' },
   ];
 }

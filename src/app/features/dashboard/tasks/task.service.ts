@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { delay, map, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
-import { Task, TaskFormData } from './models';
+import { Assignee, Task, TaskFormData } from './models';
 
 @Injectable({
   providedIn: 'root',
@@ -98,4 +98,16 @@ export class TaskService {
       return [...remaining.slice(0, at), updated, ...remaining.slice(at)];
     });
   }
+
+  // Unique assignees derived from the in-memory task list
+  readonly users = computed<Assignee[]>(() => {
+    const seen = new Set<string>();
+    return this._tasks()
+      .filter((t) => {
+        if (seen.has(t.assignee.id)) return false;
+        seen.add(t.assignee.id);
+        return true;
+      })
+      .map((t) => t.assignee);
+  });
 }

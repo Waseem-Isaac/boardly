@@ -92,14 +92,5 @@ export class TaskListComponent implements OnInit {
     this.taskService.dropTask(task.id, targetStatus, insertBeforeId);
   }
 
-  assignees = computed(() => {
-    const seen = new Set<string>();
-    return this.tasks()
-      .filter((t) => {
-        if (seen.has(t.assignee.id)) return false;
-        seen.add(t.assignee.id);
-        return true;
-      })
-      .map((t) => ({ id: t.assignee.id, name: t.assignee.name }));
-  });
+  assignees = this.taskService.users;
 }
