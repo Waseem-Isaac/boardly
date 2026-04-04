@@ -28,7 +28,7 @@ export class TaskFormComponent implements OnInit {
   @Input() submitButtonText = 'Submit';
   @Output() formSubmit = new EventEmitter<TaskFormData>();
   @Output() formCancel = new EventEmitter<void>();
-
+  today = new Date();
   taskForm!: FormGroup;
 
   statusOptions = [
@@ -53,8 +53,8 @@ export class TaskFormComponent implements OnInit {
     this.taskForm = this.fb.group({
       title: [this.task?.title || '', [Validators.required, Validators.minLength(3)]],
       description: [this.task?.description || '', [Validators.required]],
-      status: [this.task?.status || 'todo', [Validators.required]],
-      priority: [this.task?.priority || 'medium', [Validators.required]],
+      status: [this.task?.status, [Validators.required]],
+      priority: [this.task?.priority, [Validators.required]],
       dueDate: [this.task?.dueDate ? new Date(this.task.dueDate + 'T00:00:00') : null, [Validators.required]],
       assignee: this.fb.group({
         id: [this.task?.assignee?.id || ''],

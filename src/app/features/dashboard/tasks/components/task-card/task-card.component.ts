@@ -4,10 +4,12 @@ import { DueDatePipe } from '../../../../../shared/pipes/due-date.pipe';
 import { NgClass } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-task-card',
-  imports: [DueDatePipe, NgClass, RouterLink, MatIconModule],
+  imports: [DueDatePipe, NgClass, RouterLink, MatIconModule, MatMenuModule, MatIconButton],
   templateUrl: './task-card.component.html',
   styleUrl: './task-card.component.scss',
 })
@@ -15,7 +17,7 @@ export class TaskCardComponent {
   deleteRequested = output<string>();
   task = input.required<Task>();
 
-  getInitials(name: string): string {
+  getAvatarInitials(name: string): string {
     return name
       .split(' ')
       .slice(0, 2)

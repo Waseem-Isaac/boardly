@@ -73,6 +73,15 @@ textarea {
   border-color: var(--color-light-grey) !important;
 }
 
-::placeholder, select::placeholder, label {
+// Placeholder text for native inputs and selects and mat-selects placeholders
+::placeholder, .mat-mdc-select-placeholder , select::placeholder, label {
   color: var(--color-neutral) !important;
+}
+
+// ── Datepicker: visually disabled past dates (min date constraint) ──────────
+.mat-calendar-body-disabled {
+  > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected) {
+    color: var(--color-neutral) !important;
+    cursor: not-allowed;
+  }
 }

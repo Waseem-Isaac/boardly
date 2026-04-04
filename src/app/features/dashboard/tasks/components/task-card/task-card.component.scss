@@ -38,6 +38,13 @@
     }
   }
 
+   // Action buttons (edit / delete)
+  .card-header .actions .menu-btn {
+    color: var(--color-neutral);
+    background: transparent;
+    border: none;
+    font-size: 0.5rem;
+  }
 
   // Title
   .card-title {
@@ -68,28 +75,6 @@
       color: var(--color-danger);
       font-weight: 600;
     }
-  }
-
-  // Action buttons (edit / delete)
-  .action-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 28px;
-    height: 28px;
-    border: none;
-    background: transparent;
-    border-radius: 4px;
-    cursor: pointer;
-    color: var(--color-neutral);
-    text-decoration: none;
-    transition: background 0.15s, color 0.15s;
-
-    mat-icon { font-size: 16px; width: 16px; height: 16px; }
-
-    &:hover { background: var(--color-light-grey); color: var(--color-dark); }
-
-    &.action-btn--delete:hover { background: var(--color-badge-risk); color: var(--color-danger); }
   }
 
   // Tags

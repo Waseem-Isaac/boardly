@@ -40,7 +40,7 @@
   <!-- Due Date -->
   <mat-form-field appearance="outline" class="full-width">
     <mat-label>Due Date</mat-label>
-    <input matInput [matDatepicker]="dueDatePicker" formControlName="dueDate" placeholder="MM/DD/YYYY" readonly />
+    <input matInput [matDatepicker]="dueDatePicker" formControlName="dueDate" placeholder="MM/DD/YYYY" readonly [min]="today" />
     <mat-datepicker-toggle matIconSuffix [for]="dueDatePicker" />
     <mat-datepicker #dueDatePicker />
     <mat-error>{{ getFieldError('dueDate') }}</mat-error>

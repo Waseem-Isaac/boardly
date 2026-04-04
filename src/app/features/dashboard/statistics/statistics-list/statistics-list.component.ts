@@ -12,5 +12,6 @@ import { StatisticsService } from '../statistics.service';
 export class StatisticsListComponent {
   private statisticsService = inject(StatisticsService);
 
+  // Static data - Just load data from the statistics mock file generated.
   statistics = toSignal(this.statisticsService.getStatistics(), { initialValue: [] });
 }

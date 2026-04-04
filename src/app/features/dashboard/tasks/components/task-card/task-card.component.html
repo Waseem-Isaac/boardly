@@ -3,13 +3,24 @@
   <!-- 1. Priority badge + actions -->
   <div class="card-header d-flex align-items-center justify-content-between mb-2">
     <span class="priority-badge priority-{{ task().priority }}">{{ task().priority }}</span>
-    <div class="card-actions d-flex gap-1">
-      <a class="action-btn" [routerLink]="['/dashboard/tasks/edit', task().id]" title="Edit task">
-        <mat-icon>edit</mat-icon>
-      </a>
-      <button class="action-btn action-btn--delete" (click)="deleteRequested.emit(task().id)" title="Delete task">
-        <mat-icon>delete</mat-icon>
+
+    <!-- use mat-menu for actions, menu item will be the 3 veritcal dots -->
+    <div class="actions">
+      <button mat-icon-button [matMenuTriggerFor]="menu" class="menu-btn">
+        <mat-icon>more_vert</mat-icon>
       </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item [routerLink]="['/dashboard/tasks/edit', task().id]">
+          <mat-icon>edit</mat-icon>
+          Edit
+        </button>
+        <button mat-menu-item (click)="deleteRequested.emit(task().id)">
+          <mat-icon>delete</mat-icon>
+          Delete
+        </button>
+      </mat-menu>
+
+
     </div>
   </div>
 
@@ -25,7 +36,7 @@
   <!-- 5. Tags -->
   <div class="tags d-flex flex-wrap gap-1 mt-1">
     @for (tag of task().tags; track tag) {
-      <span class="tag">{{ tag }}</span>
+    <span class="tag">{{ tag }}</span>
     }
   </div>
 
@@ -34,7 +45,7 @@
 
   <!-- 7. Assignee avatar + name -->
   <div class="assignee d-flex align-items-center gap-2">
-    <div class="avatar">{{ getInitials(task().assignee.name) }}</div>
+    <div class="avatar">{{ getAvatarInitials(task().assignee.name) }}</div>
     <span class="assignee-name">{{ task().assignee.name }}</span>
   </div>
 
