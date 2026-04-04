@@ -4,13 +4,17 @@ on:
   push:
     branches:
       - main
-
+      
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
 
     steps:
       - name: Checkout
@@ -28,7 +32,11 @@ jobs:
       - name: Build
         run: npm run build -- --base-href=/${{ github.event.repository.name }}/
 
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/task-management-dashboard/browser
+
       - name: Deploy to GitHub Pages
-        run: npx angular-cli-ghpages --dir=dist/task-management-dashboard/browser
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        id: deployment
+        uses: actions/deploy-pages@v4
