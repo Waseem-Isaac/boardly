@@ -65,6 +65,24 @@ ng build
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
+## Design Patterns & State Management
+
+**Component Architecture:**
+- **Smart components** (9): Container components that inject services, manage state, and handle business logic (Dashboard, Analytics, Header, Sidenav, Users, Statistics List, Task List, Task Add, Task Edit)
+- **Dumb components** (3): Presentational components that receive data via `@Input()` and emit events via `@Output()` (Task Card, Task Form, Statistic Card)
+
+**State Management:**
+- Reactive signals (`signal()`, `computed()`) for fine-grained reactivity
+- Service-based state: `TaskService` and `StatisticsService` expose signals that components consume directly
+- RxJS for async operations: HTTP requests, debounced search, and side effects
+- No global state library needed—signals + services provide sufficient reactivity at this scale
+
+**Key Patterns:**
+- **Cache interceptor** (`CacheInterceptor`) for GET request caching
+- **Debounced search** via `SearchService` using RxJS `Subject` + `debounceTime`
+- **OnPush change detection** with signals for optimal performance
+- **Lazy loading** for dashboard feature routes
+
 ## Unit Tests
 
 Tests are written with the following tools:
