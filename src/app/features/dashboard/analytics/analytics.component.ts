@@ -1,3 +1,7 @@
+/**
+ * Analytics dashboard displaying task statistics with grouped bar charts.
+ * SMART component (fetches data, contains business logic)
+ */
 import { Component, computed, inject, OnInit } from '@angular/core';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartData, ChartOptions } from 'chart.js';

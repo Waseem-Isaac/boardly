@@ -1,3 +1,7 @@
+/**
+ * Task list with filtering, search, drag-drop reordering and delete functionality.
+ * SMART component (manages state, filtering, and task operations)
+ */
 import {
   ChangeDetectionStrategy,
   Component,

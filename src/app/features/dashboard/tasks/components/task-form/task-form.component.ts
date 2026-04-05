@@ -1,3 +1,7 @@
+/**
+ * Reusable reactive form for creating and editing tasks with validation.
+ * DUMB component (presentational, delegates business logic via outputs)
+ */
 import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';

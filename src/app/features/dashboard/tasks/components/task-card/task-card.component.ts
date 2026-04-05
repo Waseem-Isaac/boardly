@@ -1,3 +1,7 @@
+/**
+ * Reusable task card displaying task details with status, priority, and actions.
+ * DUMB component (presentational, receives task via input)
+ */
 import { Component, input, output } from '@angular/core';
 import { Task } from '../../models';
 import { DueDatePipe } from '../../../../../shared/pipes/due-date.pipe';

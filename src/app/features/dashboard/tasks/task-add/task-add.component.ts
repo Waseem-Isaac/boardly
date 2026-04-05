@@ -1,3 +1,7 @@
+/**
+ * Task creation page handling new task submission and navigation.
+ * SMART component (manages task creation via service)
+ */
 import { Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { TaskFormComponent } from '../components/task-form/task-form.component';
@@ -34,7 +38,7 @@ export class TaskAddComponent {
       },
       complete: () => {
         this.isSubmitting.set(false);
-      }
+      },
     });
   }
 

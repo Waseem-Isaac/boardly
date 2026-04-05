@@ -1,3 +1,7 @@
+/**
+ * Navigation menu component displaying app routes with icons.
+ * DUMB component (presentational)
+ */
 import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatListModule } from '@angular/material/list';

@@ -1,3 +1,7 @@
+/**
+ * Statistics overview displaying key metrics cards.
+ * SMART component (fetches statistics via service)
+ */
 import { Component, inject } from '@angular/core';
 import { StatisticCardComponent } from '../components/statistic-card/statistic-card.component';
 import { StatisticsService } from '../statistics.service';

@@ -1,3 +1,7 @@
+/**
+ * Task edit page loading existing task data and handling update operations.
+ * SMART component (manages route params, data loading, and submission)
+ */
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaskFormComponent } from '../components/task-form/task-form.component';
@@ -45,7 +49,7 @@ export class TaskEditComponent implements OnInit {
         console.error('Error loading task:', error);
         this.errorMessage.set('Failed to load task. Please try again.');
         this.isLoading.set(false);
-      }
+      },
     });
   }
 
@@ -68,7 +72,7 @@ export class TaskEditComponent implements OnInit {
       },
       complete: () => {
         this.isSubmitting.set(false);
-      }
+      },
     });
   }
 

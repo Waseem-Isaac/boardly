@@ -1,3 +1,7 @@
+/**
+ * Application header with search functionality and layout controls.
+ * SMART component (manages search state via services)
+ */
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
