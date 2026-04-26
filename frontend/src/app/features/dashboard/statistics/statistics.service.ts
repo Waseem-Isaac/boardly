@@ -3,13 +3,14 @@ import { httpResource } from '@angular/common/http';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map, timer } from 'rxjs';
 import { Statistic } from './models';
+import { environment } from '../../../../environments/environment.production';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StatisticsService {
   private _resource = httpResource<{ statistics: Statistic[] }>(
-    () => `${window.location.origin}/statistics.json`,
+    () => `${environment.clientUrl}statistics.json`,
   );
   private _simulatingLoad = toSignal(timer(1000).pipe(map(() => false)), { initialValue: true });
 
