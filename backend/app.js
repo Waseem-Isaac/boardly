@@ -9,6 +9,7 @@ const connectDB = require('./config/db');
 const usersRouter = require('./routes/users');
 const tasksRouter = require('./routes/tasks');
 const authRouter  = require('./routes/auth');
+const isAuthenticated = require('./middleware/isAuthenticated');
 
 const app = express();
 
@@ -32,7 +33,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/auth', authRouter);
-app.use('/users', usersRouter);
-app.use('/tasks', tasksRouter);
+app.use('/users', isAuthenticated, usersRouter);
+app.use('/tasks', isAuthenticated, tasksRouter);
 
 module.exports = app;
