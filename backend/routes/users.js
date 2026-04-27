@@ -1,7 +1,9 @@
 // User Routes
 const express = require('express');
 const router = express.Router();
+const crypto = require('crypto');
 const User = require('../models/user');
+const { sendInvitationEmail } = require('../config/mailer');
 
 // GET all users (optionally filter by ?active=true)
 router.get('/', async (req, res, next) => {
@@ -19,7 +21,20 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const { name, email } = req.body;
-    const user = await User.create({ name, email });
+
+    // Generate a secure random invitation token (plain sent via email, hash stored in DB)
+    const plainToken  = crypto.randomBytes(32).toString('hex');
+    const hashedToken = crypto.createHash('sha256').update(plainToken).digest('hex');
+
+    const user = await User.create({
+      name,
+      email,
+      invitationToken: hashedToken,
+    });
+
+    // Send invitation email with the plain token
+    await sendInvitationEmail(email, plainToken);
+
     res.status(201).json(user);
   } catch (err) {
     if (err.name === 'ValidationError') {

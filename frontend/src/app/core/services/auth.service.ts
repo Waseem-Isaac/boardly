@@ -25,6 +25,11 @@ export interface RegisterRequest {
   password: string;
 }
 
+export interface SetPasswordRequest {
+  token: string;
+  password: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private http = inject(HttpClient);
@@ -46,6 +51,18 @@ export class AuthService {
   register(name: string, email: string, password: string): Observable<AuthResponse> {
     return this.http
       .post<AuthResponse>('auth/register', { name, email, password } satisfies RegisterRequest)
+      .pipe(tap((res) => this._persist(res)));
+  }
+
+  validateInvitation(token: string): Observable<{ email: string; name: string }> {
+    return this.http.get<{ email: string; name: string }>(`auth/validate-invitation`, {
+      params: { token },
+    });
+  }
+
+  setPassword(token: string, password: string): Observable<AuthResponse> {
+    return this.http
+      .post<AuthResponse>('auth/set-password', { token, password } satisfies SetPasswordRequest)
       .pipe(tap((res) => this._persist(res)));
   }
 

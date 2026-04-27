@@ -110,10 +110,11 @@
 }
 
 // ─── Shared card styles — scoped under app-join to prevent global bleed ─────
-app-join {
+app-join, app-set-password {
   // Cards fill available column width
   app-login,
-  app-register {
+  app-register, 
+  .set-password-card {
     &.card {
       flex: 1;
       padding: 2.25rem 2rem;
@@ -131,7 +132,7 @@ app-join {
       .subtitle {
         font-size: 13px;
         color: var(--color-neutral);
-        margin-bottom: 2.5rem;
+        margin: 0.3rem 0 2rem;
         font-weight: 400;
       }
 
@@ -153,15 +154,9 @@ app-join {
       }
 
       .submit-btn {
-        // width: 100%;
         height: 56px;
         font-size: 1rem;
         font-weight: bold;
-        // margin-top: 0.5rem;
-        // display: flex;
-        // align-items: center;
-        // justify-content: center;
-        // gap: 0.5rem;
       }
 
       .error-banner {
