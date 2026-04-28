@@ -2,7 +2,7 @@
 
 A feature-rich task management SPA built with Angular 21.
 
-**Live demo:** https://waseem-isaac.github.io/task-management-dashboard/dashboard
+**Live demo:** https://waseem-isaac.github.io/Boardly/
 
 ---
 
