@@ -1,5 +1,5 @@
 {
-  "name": "task-management-dashboard",
+  "name": "boardly",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
