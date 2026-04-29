@@ -13,7 +13,7 @@ module.exports = transporter;
 
 // Send invitation email
 // Enhance: logo, app name, color
-const APP_NAME = process.env.APP_NAME || 'Task Manager';
+const APP_NAME = process.env.APP_NAME || 'Boardly';
 const LOGO_URL = process.env.APP_LOGO_URL || 'https://waseem-isaac.github.io/boardly/icons/logo.svg';
 const MAIN_COLOR = '#e3783e';
 
