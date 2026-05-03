@@ -8,7 +8,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 import { LayoutService } from '../../core/services/layout.service';
-import { TaskAddComponent } from '../../features/tasks/task-add/task-add.component';
+import { TaskAddComponent } from '../../features/board/components/task/task-add/task-add.component';
 
 @Component({
   selector: 'app-sidenav',
@@ -22,7 +22,7 @@ export class SidenavComponent {
   private dialog = inject(MatDialog);
 
   navItems = [
-    { label: 'Tasks', route: '/tasks', matIcon: 'dashboard' },
+    { label: 'Board', route: '/board', matIcon: 'dashboard' },
     { label: 'Analytics', route: '/analytics', matIcon: 'show_chart' },
     { label: 'Team (Users)', route: '/users', matIcon: 'supervisor_account' },
   ];

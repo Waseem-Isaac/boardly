@@ -5,8 +5,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatChipsModule } from '@angular/material/chips';
 import { NgClass, DatePipe } from '@angular/common';
-import { TaskService } from '../task.service';
-import { Task } from '../models';
+import { BoardService } from '../../../board.service';
+import { Task } from '../../../models';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
@@ -25,7 +25,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
   styleUrl: './task-view.component.scss',
 })
 export class TaskViewComponent implements OnInit {
-  private taskService = inject(TaskService);
+  private taskService = inject(BoardService);
   private dialogRef = inject(MatDialogRef<TaskViewComponent>);
   private data = inject<{ taskId: string }>(MAT_DIALOG_DATA);
   private snackbar = inject(MatSnackBar);

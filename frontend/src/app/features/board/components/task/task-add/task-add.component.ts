@@ -4,9 +4,9 @@
  */
 import { Component, inject, signal } from '@angular/core';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { TaskFormComponent } from '../components/task-form/task-form.component';
-import { TaskService } from '../task.service';
-import { TaskFormData } from '../models';
+import { TaskFormComponent } from '../shared/task-form/task-form.component';
+import { BoardService } from '../../../board.service';
+import { TaskFormData } from '../../../models';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -19,7 +19,7 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: ['./task-add.component.scss'],
 })
 export class TaskAddComponent {
-  private taskService = inject(TaskService);
+  private taskService = inject(BoardService);
   private dialogRef = inject(MatDialogRef<TaskAddComponent>);
   private snackbar = inject(MatSnackBar);
   isSubmitting = signal(false);

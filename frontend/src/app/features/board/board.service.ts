@@ -8,7 +8,7 @@ import { StatisticsService } from '../statistics/statistics.service';
 @Injectable({
   providedIn: 'root',
 })
-export class TaskService {
+export class BoardService {
   private http = inject(HttpClient);
   private statisticsService = inject(StatisticsService);
 
@@ -44,9 +44,6 @@ export class TaskService {
         this.statisticsService.reload();
       }),
     );
-
-    // this._tasks.update((tasks) => [newTask, ...tasks]);
-    // return of(newTask);
   }
 
   updateTask(id: string, taskData: TaskFormData): Observable<Task> {

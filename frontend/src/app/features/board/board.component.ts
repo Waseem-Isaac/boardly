@@ -1,5 +1,5 @@
 /**
- * Task list with filtering, search, drag-drop reordering and delete functionality.
+ * Board component — Kanban view of all tasks with filtering, search, drag-drop and delete.
  * SMART component (manages state, filtering, and task operations)
  */
 import {
@@ -10,26 +10,27 @@ import {
   OnInit,
   signal,
 } from '@angular/core';
-import { TaskService } from '../task.service';
-import { Task } from '../models';
+import { BoardService } from './board.service';
+import { Task } from './models';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialog } from '@angular/material/dialog';
-import { TaskCardComponent } from '../components/task-card/task-card.component';
-import { FilterByStatusPipe } from '../../../shared/pipes/filter-by-status.pipe';
+import { TaskCardComponent } from './components/task/shared/task-card/task-card.component';
+import { FilterByStatusPipe } from '../../shared/pipes/filter-by-status.pipe';
 import { NgClass } from '@angular/common';
 import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
-import { SearchService } from '../../../core/services/search.service';
-import { TaskAddComponent } from '../task-add/task-add.component';
-import { TaskEditComponent } from '../task-edit/task-edit.component';
-import { TaskViewComponent } from '../task-view/task-view.component';
-import { Confirmable } from '../../../shared/decorators/confirmable.decorator';
-import { UsersService } from '../../users/users.service';
-import { AuthService } from '../../../core/services/auth.service';
+import { SearchService } from '../../core/services/search.service';
+import { TaskAddComponent } from './components/task/task-add/task-add.component';
+import { TaskEditComponent } from './components/task/task-edit/task-edit.component';
+import { TaskViewComponent } from './components/task/task-view/task-view.component';
+import { Confirmable } from '../../shared/decorators/confirmable.decorator';
+import { UsersService } from '../users/users.service';
+import { AuthService } from '../../core/services/auth.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+
 @Component({
-  selector: 'app-task-list',
+  selector: 'app-board',
   imports: [
     MatIconModule,
     MatSelectModule,
@@ -40,12 +41,12 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
     DragDropModule,
     MatSnackBarModule,
   ],
-  templateUrl: './task-list.component.html',
-  styleUrls: ['./task-list.component.scss'],
+  templateUrl: './board.component.html',
+  styleUrls: ['./board.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TaskListComponent implements OnInit {
-  private taskService = inject(TaskService);
+export class BoardComponent implements OnInit {
+  private taskService = inject(BoardService);
   protected usersService = inject(UsersService);
   private searchService = inject(SearchService);
   private dialog = inject(MatDialog);

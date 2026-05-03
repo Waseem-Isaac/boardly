@@ -3,12 +3,12 @@
  * DUMB component (presentational, receives task via input)
  */
 import { Component, inject, input, output } from '@angular/core';
-import { Task } from '../../models';
+import { Task } from '../../../../models';
 import { DatePipe, NgClass } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconButton } from '@angular/material/button';
-import { UsersService } from '../../../users/users.service';
+import { UsersService } from '../../../../../users/users.service';
 
 @Component({
   selector: 'app-task-card',

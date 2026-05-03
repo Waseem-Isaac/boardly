@@ -5,7 +5,7 @@
 import { Component, computed, inject, OnInit } from '@angular/core';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartData, ChartOptions } from 'chart.js';
-import { TaskService } from '../tasks/task.service';
+import { BoardService } from '../board/board.service';
 
 @Component({
   selector: 'app-analytics',
@@ -14,7 +14,7 @@ import { TaskService } from '../tasks/task.service';
   styleUrl: './analytics.component.scss',
 })
 export class AnalyticsComponent implements OnInit {
-  private taskService = inject(TaskService);
+  private taskService = inject(BoardService);
 
   ngOnInit(): void {
     this.taskService.loadTasks().subscribe();

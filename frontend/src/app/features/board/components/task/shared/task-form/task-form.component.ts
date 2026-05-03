@@ -9,9 +9,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { Task, TaskFormData } from '../../models';
-import { UsersService } from '../../../users/users.service';
-import { AuthService } from '../../../../core/services/auth.service';
+import { Task, TaskFormData } from '../../../../models';
+import { UsersService } from '../../../../../users/users.service';
+import { AuthService } from '../../../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-task-form',
@@ -35,7 +35,6 @@ export class TaskFormComponent implements OnInit {
   authService = inject(AuthService);
   today = new Date();
   taskForm!: FormGroup;
-  // Prefer using the inject() function over constructor parameter injection. Use Angular's migration schematic to automatically refactor: ng generate @angular/core:injecteslint@angular-eslint/prefer-inject
   fb = inject(FormBuilder);
   usersService = inject(UsersService);
 
@@ -108,7 +107,6 @@ export class TaskFormComponent implements OnInit {
     if (field?.hasError('email')) {
       return 'Invalid email format';
     }
-    // date validation could be added here if needed : `matDatepickerMin` and `matDatepickerMax` validators
     if (fieldName === 'dueDate') {
       if (field?.hasError('matDatepickerMin')) {
         return 'Due date cannot be in the past';

@@ -4,9 +4,9 @@
  */
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { TaskFormComponent } from '../components/task-form/task-form.component';
-import { TaskService } from '../task.service';
-import { Task, TaskFormData } from '../models';
+import { TaskFormComponent } from '../shared/task-form/task-form.component';
+import { BoardService } from '../../../board.service';
+import { Task, TaskFormData } from '../../../models';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -19,7 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrls: ['./task-edit.component.scss'],
 })
 export class TaskEditComponent implements OnInit {
-  private taskService = inject(TaskService);
+  private taskService = inject(BoardService);
   private snackbar = inject(MatSnackBar);
   private dialogRef = inject(MatDialogRef<TaskEditComponent>);
   private data = inject<{ taskId: string }>(MAT_DIALOG_DATA);
@@ -68,7 +68,7 @@ export class TaskEditComponent implements OnInit {
     this.isSubmitting.set(true);
 
     this.taskService.updateTask(this.task()!._id, taskData).subscribe({
-      next: (updatedTask) => {
+      next: () => {
         this.snackbar.open('Task updated successfully!', '', 
           { 
             duration: 3000 , 

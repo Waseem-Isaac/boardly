@@ -9,19 +9,10 @@ export const routes: Routes = [
   },
 
   {
-
-    path: 'tasks',
+    path: 'board',
     canActivate: [authGuard],
     loadComponent: () => import('./layout/shell/shell.component').then((m) => m.ShellComponent),
-    children: [
-      {
-        path: '',
-        loadComponent: () =>
-          import('./features/tasks/task-list/task-list.component').then((m) => m.TaskListComponent),
-        data: { title: 'Tasks' },
-      },
-    ],
-
+    loadChildren: () => import('./features/board/board.routes').then((m) => m.BOARD_ROUTES),
   },
   {
     path: 'analytics',
