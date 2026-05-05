@@ -1,18 +1,5 @@
 // ─── Page layout ────────────────────────────────────────────────
 .join-page {
-
-  // padding : 1rem;
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(100, 116, 139, 0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(100, 116, 139, 0.06) 1px, transparent 1px);
-    background-size: 32px 32px;
-    pointer-events: none;
-  }
-
   min-height: 100vh;
   display: flex;
   flex-direction: column;
