@@ -7,7 +7,7 @@
 
       <!-- Board name & Inline text field to edit the board name into one element -->
       <mat-form-field subscriptSizing="dynamic" appearance="outline" class="board-name-field editable-text">
-        <input matInput [value]="activeBoard()?.name" (blur)="updateBoardName(activeBoard()?._id, $event.target.value)"
+        <input matInput [value]="activeBoard()?.name" (blur)="updateBoardName(activeBoard()?._id, $event.target.value, $event.target)"
           [disabled]="authService.currentUser()?.role !== 'TEAM_LEAD'" />
         @if(authService.currentUser()?.role === 'TEAM_LEAD') {
         <mat-icon matPrefix class="edit-icon">edit</mat-icon>

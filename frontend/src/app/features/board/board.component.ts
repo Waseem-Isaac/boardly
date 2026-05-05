@@ -55,17 +55,17 @@ export class BoardComponent implements OnInit{
   this.dialog.open(BoardAddComponent, { panelClass: ['app-dialog', 'sm'], disableClose: true });
   }
 
-  updateBoardName(boardId: string | undefined, newName: string): void {
+  updateBoardName(boardId: string | undefined, newName: string, inputEl: HTMLInputElement): void {
+    const oldName = this.activeBoard()?.name;
     if (!boardId) return;
-    if (newName.trim() === this.activeBoard()?.name) return;
+    if (newName.trim() === oldName) return;
     this.boardsService.updateBoard(boardId, { name: newName.trim() }).subscribe({
-      error: (error) => {
+      error: () => {
         this.snackbar.open('Failed to update board name', 'Close', { 
             duration: 3000 , 
             panelClass: ['snackbar-error'] , horizontalPosition: 'center', verticalPosition: 'top'
           });
-        // revert to old name
-        this.boardsService.setActiveBoard(this.boardsService.activeBoard());
+        inputEl.value = oldName || '';
       },
     });
   }
