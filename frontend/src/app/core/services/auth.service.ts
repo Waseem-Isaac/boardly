@@ -77,7 +77,7 @@ export class AuthService {
     localStorage.removeItem('auth_user');
     this._currentUser.set(null);
     this.boardService.reset();
-    this.router.navigate(['/auth/login']);
+    this.router.navigate(['/auth/join']);
   }
 
   private _persist(res: AuthResponse): void {
