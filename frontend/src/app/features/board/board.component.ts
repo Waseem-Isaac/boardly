@@ -61,6 +61,7 @@ export class BoardComponent implements OnInit{
     this.boardsService.updateBoard(boardId, { name: newName.trim() }).subscribe({
       error: (error) => {
         this.snackbar.open('Failed to update board name', 'Close', { duration: 3000 });
+        newName = this.activeBoard()?.name || '';
       },
     });
   }
