@@ -6,10 +6,11 @@ import { Component, computed, inject, OnInit } from '@angular/core';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartData, ChartOptions } from 'chart.js';
 import { TasksService } from '../board/tasks.service';
+import { StatisticsListComponent } from "../statistics/statistics-list/statistics-list.component";
 
 @Component({
   selector: 'app-analytics',
-  imports: [BaseChartDirective],
+  imports: [BaseChartDirective, StatisticsListComponent],
   templateUrl: './analytics.component.html',
   styleUrl: './analytics.component.scss',
 })

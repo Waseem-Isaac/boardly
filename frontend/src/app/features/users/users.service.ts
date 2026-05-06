@@ -3,12 +3,14 @@ import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { AuthService } from '../../core/services/auth.service';
+import { PaginationMeta } from '../../shared/components/pagination/pagination.component';
 
 export interface User {
   _id: string;
   name: string;
   email: string;
   active?: boolean;
+  role: 'TEAM_LEAD' | 'MEMBER';
   avatarUrl?: string;
 }
 
@@ -27,18 +29,16 @@ export class UsersService {
   private _users = signal<User[]>([]);
   readonly users = this._users.asReadonly();
   readonly isLoading = signal(true);
+  readonly meta = signal<PaginationMeta | null>(null);
 
-  loadUsers(active?: boolean): void {
-    const params = active === true ? new HttpParams().set('active', 'true') : new HttpParams();
-    this.http.get<{ users: User[] }>('users', { params }).subscribe({
+  loadUsers(active?: boolean , page = 1, limit = 10): void {
+    let params = new HttpParams().set('page', String(page)).set('limit', String(limit));
+    if (active === true) params = params.set('active', 'true');
+    this.isLoading.set(true);
+    this.http.get<{ users: User[]; meta: PaginationMeta }>('users', { params }).subscribe({
       next: (data) => {
-        // Order users by me first.
-        data.users.sort((a, b) => {
-          if (a._id === this.authService.currentUser()?._id) return -1;
-          if (b._id === this.authService.currentUser()?._id) return 1;
-          return 0;
-        });
         this._users.set(data.users);
+        this.meta.set(data.meta);
         this.isLoading.set(false);
       },
     });

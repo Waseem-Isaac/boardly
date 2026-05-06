@@ -1,0 +1,33 @@
+@if (meta(); as m) {
+  <nav class="pagination" aria-label="Pagination">
+    <button
+      mat-icon-button
+      class="nav-btn d-flex align-items-center justify-content-center"
+      [disabled]="!m.hasPrevPage"
+      (click)="goTo(m.page - 1)"
+      aria-label="Previous page"
+    >
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+
+    @for (p of pages(); track $index) {
+      @if (p === null) {
+        <span class="ellipsis">…</span>
+      } @else {
+        <button class="page-btn" [class.active]="p === m.page" (click)="goTo(p)">
+          {{ p }}
+        </button>
+      }
+    }
+
+    <button
+      mat-icon-button
+      class="nav-btn d-flex align-items-center justify-content-center"
+      [disabled]="!m.hasNextPage"
+      (click)="goTo(m.page + 1)"
+      aria-label="Next page"
+    >
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </nav>
+}

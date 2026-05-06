@@ -50,75 +50,7 @@
         height: 14px;
       }
     }
-  }
-
-  .users-grid {
-    // display: grid;
-    // grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    // gap: 1rem;
-  }
-
-  .user-card {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1.25rem;
-    background: var(--color-primary-contrast);
-    border-bottom: 1px solid var(--color-light-grey);
-    // border-radius: var(--radius-lg);
-    box-shadow: 0px 2px 4px 0px #00000014;
-    transition: transform 0.15s ease;
-    min-height: 72px;
-
-    .delete-btn {
-      position: absolute;
-      color: var(--color-danger);
-      width: 2rem;
-      height: 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      top: 50%;
-      transform: translateY(-50%);
-      right: 1rem;
-      font-weight: bolder;
-      line-height: 24px;
-      background: var(--color-body-bg);
-      // border-bottom-left-radius: 1rem;
-      border-radius: 50%;
-      // box-shadow: 0px 2px 4px 0px #00000014;
-      border: 1px solid var(--color-light-grey);
-
-      mat-icon {
-        font-size: 16px;
-        width: 16px;
-        height: 16px;
-      }
-    }
-
-    // Let the global shimmer override the card's white background
-    &.skeleton {
-      background: linear-gradient(
-        90deg,
-        var(--color-light-grey) 25%,
-        #fff 50%,
-        var(--color-light-grey) 75%
-      );
-    }
-
-    &.inactive {
-      opacity: 0.75;
-
-      .user-avatar {
-        filter: grayscale(1);
-      }
-
-      .user-name {
-        color: var(--color-neutral);
-      }
-    }
-  }
+  } 
 
   .inactive-badge {
     position: absolute;
@@ -154,7 +86,7 @@
     background: #fff8e1;
     border: 1px solid var(--color-primary-light);
     border-radius: var(--radius-lg);
-        color: var(--color-warning);
+    color: var(--color-warning);
     font-size: 0.8rem;
 
     mat-icon {
@@ -197,9 +129,102 @@
       align-items: flex-start;
       gap: 1rem;
 
-      .search-bar, .btn {
+      .search-bar,
+      .btn {
         width: 100%;
       }
     }
   }
+}
+
+
+
+// Styling the table following same design pattern we hav
+.users-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--color-light-grey);
+  border-radius: var(--radius-lg);
+
+  tbody {
+  }
+
+  tbody td {
+    background: var(--color-primary-contrast);
+    border-top: 1px solid var(--color-light-grey);
+  }
+
+  th,
+  td {
+    padding: 0.75rem 1.25rem;
+    text-align: left;
+    font-size: 0.8rem;
+    color: var(--color-dark);
+  }
+
+  th {
+    padding: 0.6rem 1.25rem;
+    font-weight: 600;
+    background: var(--color-body-bg);
+    color: var(--color-neutral);
+  }
+
+  thead tr:first-child th:first-child { border-radius: var(--radius-lg) 0 0 0; }
+  thead tr:first-child th:last-child  { border-radius: 0 var(--radius-lg) 0 0; }
+  tbody tr:last-child  td:first-child { border-radius: 0 0 0 var(--radius-lg); }
+  tbody tr:last-child  td:last-child  { border-radius: 0 0 var(--radius-lg) 0; }
+
+  tr {
+    &.inactive {
+      opacity: 0.75;
+
+      .user-avatar {
+        filter: grayscale(1);
+      }
+
+      .user-name {
+        color: var(--color-neutral);
+      }
+    }
+  }
+
+  .status-column {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    .status-badge {
+      font-size: 0.8rem;
+      font-weight: 500;
+      &.active {
+        color: var(--color-success);
+      }
+      &.inactive {
+        color: var(--color-warning);
+      }
+    }
+  }
+
+     .delete-btn {
+      color: var(--color-danger);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: var(--color-body-bg);
+      border: 1px solid var(--color-light-grey);
+
+      
+
+      mat-icon {
+        font-size: 16px;
+        width: 16px;
+        height: 16px;
+        overflow: visible;
+      }
+    }
+
 }

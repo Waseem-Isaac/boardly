@@ -11,10 +11,11 @@ import { Confirmable } from '../../shared/decorators/confirmable.decorator';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../core/services/auth.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { PaginationComponent } from '../../shared/components/pagination/pagination.component';
 
 @Component({
   selector: 'app-users',
-  imports: [MatIcon, MatIconButton, FormsModule, MatSnackBarModule],
+  imports: [MatIcon, MatIconButton, FormsModule, MatSnackBarModule, PaginationComponent],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
 })
@@ -24,21 +25,22 @@ export class UsersComponent implements OnInit {
   private snackbar = inject(MatSnackBar);
   protected searchTerm = signal('');
   authService = inject(AuthService);
+  protected currentPage = signal(1);
+  protected readonly limit = 10;
+  users = this.usersService.users;
 
   private matchesSearch(name: string): boolean {
     const q = this.searchTerm().toLowerCase().trim();
     return !q || name.toLowerCase().includes(q);
   }
 
-  protected activeUsers = computed(() =>
-    this.usersService.users().filter((u) => u.active !== false && this.matchesSearch(u.name)),
-  );
-  protected inactiveUsers = computed(() =>
-    this.usersService.users().filter((u) => u.active === false && this.matchesSearch(u.name)),
-  );
-
   ngOnInit(): void {
-    this.usersService.loadUsers();
+    this.usersService.loadUsers(false, 1, this.limit);
+  }
+
+  onPageChange(page: number): void {
+    this.currentPage.set(page);
+    this.usersService.loadUsers(false, page, this.limit);
   }
 
   openAddUserDialog(): void {

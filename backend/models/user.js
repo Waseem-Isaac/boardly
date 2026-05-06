@@ -19,7 +19,8 @@ const userSchema = new mongoose.Schema({
 userSchema.virtual('avatarUrl').get(function () {
   // email is already lowercased by the schema, no need to call toLowerCase()
   const hash = crypto.createHash('md5').update(this.email.trim()).digest('hex');
-  return `https://www.gravatar.com/avatar/${hash}?s=200&d=identicon`;
+  const bgColor = hash.slice(0, 6);
+  return `https://api.dicebear.com/9.x/initials/svg?seed=${encodeURIComponent(this.name)}&backgroundColor=${bgColor}&color=fff&size=200&scale=60`;
 });
 
 

@@ -6,12 +6,34 @@ const User = require('../models/user');
 const { sendInvitationEmail } = require('../config/mailer');
 
 // GET all users (optionally filter by ?active=true)
+// Pagination: ?page=1&limit=20
 router.get('/', async (req, res, next) => {
   try {
     const filter = {};
     if (req.query.active === 'true') filter.active = true;
-    const users = await User.find(filter);
-    res.json({ users, meta: { totalCount: users.length } });
+
+    const page  = Math.max(1, parseInt(req.query.page,  10) || 1);
+    const limit = Math.min(100, Math.max(1, parseInt(req.query.limit, 10) || 20));
+    const skip  = (page - 1) * limit;
+
+    const [users, totalCount] = await Promise.all([
+      User.find(filter).skip(skip).limit(limit).sort({ createdAt: -1 }),
+      User.countDocuments(filter),
+    ]);
+
+    const totalPages = Math.ceil(totalCount / limit);
+
+    res.json({
+      users,
+      meta: {
+        totalCount,
+        totalPages,
+        page,
+        limit,
+        hasNextPage: page < totalPages,
+        hasPrevPage: page > 1,
+      },
+    });
   } catch (err) {
     next(err);
   }

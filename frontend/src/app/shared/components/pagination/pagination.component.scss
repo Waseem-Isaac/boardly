@@ -1,0 +1,64 @@
+:host {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
+
+  .pagination {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+
+    .nav-btn {
+      width: 32px;
+      height: 32px;
+      color: var(--color-dark);
+
+      &[disabled] {
+        opacity: 0.35;
+        pointer-events: none;
+      }
+
+      mat-icon {
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    .page-btn {
+      min-width: 32px;
+      height: 32px;
+      padding: 0 0.5rem;
+      border: 1px solid var(--color-light-grey);
+      border-radius: var(--radius-md);
+      background: var(--color-primary-contrast);
+      color: var(--color-dark);
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        color 0.15s ease;
+
+      &:hover:not(.active) {
+        background: var(--color-primary-active);
+        border-color: var(--color-primary);
+      }
+
+      &.active {
+        background: var(--color-primary);
+        border-color: var(--color-primary);
+        color: var(--color-primary-contrast);
+        font-weight: 600;
+        cursor: default;
+      }
+    }
+
+    .ellipsis {
+      color: var(--color-neutral);
+      padding: 0 0.25rem;
+      font-size: 0.875rem;
+      user-select: none;
+    }
+  }
+}

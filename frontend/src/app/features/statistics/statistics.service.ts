@@ -16,9 +16,11 @@ export class StatisticsService {
   private _simulatingLoad = toSignal(timer(1000).pipe(map(() => false)), { initialValue: true });
 
   constructor() {
+    // active_board is saved in localStorage when user opens a board, we can use it to fetch statistics for that board
+    const boardId = localStorage.getItem('active_board') ? JSON.parse(localStorage.getItem('active_board')!)._id : null;
     try {
       this._resource = httpResource<{ statistics: Statistic[] }>(
-        () => `${environment.apiUrl}statistics`,
+        () => `${environment.apiUrl}statistics?boardId=${boardId}`,
       );
     } catch (err) {
       this._resourceError = err;

@@ -19,13 +19,15 @@ router.get('/', async (req, res, next) => {
     const now = new Date();
     const todayStr = now.toISOString().split('T')[0]; // "YYYY-MM-DD"
     const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    // calcaulation will done per the active boardId.
+    const boardId = req.query.boardId;
 
     const [total, completed, inProgress, overdue,
            totalYest, completedYest, inProgressYest, overdueYest] = await Promise.all([
-      Task.countDocuments({}),
-      Task.countDocuments({ status: 'done' }),
-      Task.countDocuments({ status: 'in_progress' }),
-      Task.countDocuments({ status: { $ne: 'done' }, dueDate: { $lt: todayStr } }),
+      Task.countDocuments({ boardId }),
+      Task.countDocuments({ boardId, status: 'completed' }),
+      Task.countDocuments({ boardId, status: 'in-progress' }),
+      Task.countDocuments({ boardId, dueDate: { $lt: startOfToday }, status: { $ne: 'completed' } }),
 
       Task.countDocuments({ createdAt: { $lt: startOfToday } }),
       Task.countDocuments({ status: 'done',        createdAt: { $lt: startOfToday } }),
