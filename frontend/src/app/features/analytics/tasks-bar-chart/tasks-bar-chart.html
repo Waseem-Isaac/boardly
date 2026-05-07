@@ -1,0 +1,5 @@
+@if(hasChartData) {
+<canvas baseChart [data]="barChartData()" [options]="barChartOptions" [type]="barChartType"></canvas>
+}@else {
+  <app-analytics-card-placeholder></app-analytics-card-placeholder>
+}

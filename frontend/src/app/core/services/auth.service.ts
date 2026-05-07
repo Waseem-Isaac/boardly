@@ -10,6 +10,7 @@ export interface AuthUser {
   email: string;
   avatarUrl?: string;
   role?: 'TEAM_LEAD' | 'MEMBER';
+  active?: boolean;
 }
 
 interface AuthResponse {

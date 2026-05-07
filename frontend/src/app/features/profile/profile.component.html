@@ -18,10 +18,7 @@
     <mat-divider />
 
     <div class="info-section">
-      <div class="info-row">
-        <mat-icon>mail_outline</mat-icon>
-        <span>{{ authService.currentUser()?.email }}</span>
-      </div>
+       <!-- Id -->
       <div class="info-row">
         <mat-icon>fingerprint</mat-icon>
         <span class="user-id">{{ authService.currentUser()?._id }}</span>
@@ -29,6 +26,20 @@
           <mat-icon>{{ copied ? 'check' : 'content_copy' }}</mat-icon>
         </button>
       </div>
-    </div>
+      <!-- Email -->
+      <div class="info-row">
+        <mat-icon>mail_outline</mat-icon>
+        <span>{{ authService.currentUser()?.email }}</span>
+      </div>
+      <!-- Role -->
+      <div class="info-row">
+        <mat-icon>shield_outline</mat-icon>
+        <span>{{ authService.currentUser()?.role === 'TEAM_LEAD' ? 'Team Lead' : 'Team Member' }}</span>
+      </div>
+      <!-- Status -->
+      <div class="info-row">
+        <mat-icon>check_circle_outline</mat-icon>
+        <span>{{ authService.currentUser()?.active ? 'Active' : 'Inactive' }}</span>
+      </div>
   </div>
 </div>
